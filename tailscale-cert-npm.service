@@ -1,0 +1,13 @@
+[Unit]
+Description=Tailscale SSL Service Renewal
+After=network.target
+After=syslog.target
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+WorkingDirectory=<DIRECTORY_TO_STORE_TAILSCALE_CERTIFICATES>
+ExecStart=/opt/tailscale-cert-npm.sh # or directory of your choice (remember to make it executable)
+[Install]
+WantedBy=multi-user.target
