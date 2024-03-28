@@ -1,0 +1,14 @@
+# Technically, Tailscale certificates renew every 90 days, however, you can pull updated expiration dates every 30 days
+# Therefore this extends the time you have to fix any issues should the renewal fail or either Tailscale/NPM changes something that means they are not directly replacable without conversion.
+# This is also why there is a backup step in the script, so you can go back to the last working update, that will have 2 months left on it, to adjust the script to perform conversion instead of direct copy of cert files.
+
+[Unit]
+Description=Renew Tailscale cert
+
+[Timer]
+OnCalendar=monthly
+Unit=%i.service
+Persistent=true
+
+[Install]
+WantedBy=timers.target
